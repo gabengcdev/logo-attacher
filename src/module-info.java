@@ -4,6 +4,7 @@ module logoAttacherModule {
 	requires javafx.controls;
 	requires javafx.graphics;
 	requires javafx.web;
+	requires java.desktop;
 	
 	opens br.com.gabengcdev.logoattacher;
 	opens br.com.gabengcdev.logoattacher.view;
