@@ -11,7 +11,7 @@
       <Button layoutX="16.0" layoutY="61.0" mnemonicParsing="false" onAction="#searchLogo" prefHeight="25.0" prefWidth="91.0" text="Marca d'água" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="294.0" AnchorPane.topAnchor="61.0" />
       <Button layoutX="176.0" layoutY="91.0" mnemonicParsing="false" onAction="#mergeLogoIntoPhotos" text="Iniciar" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="176.0" AnchorPane.rightAnchor="176.0" AnchorPane.topAnchor="91.0" />
       <Label layoutX="116.0" layoutY="14.0" prefHeight="25.0" prefWidth="240.0" />
-      <TextField fx:id="photosAddressField" layoutX="116.0" layoutY="27.0" prefHeight="25.0" prefWidth="257.0" AnchorPane.bottomAnchor="78.0" AnchorPane.leftAnchor="116.0" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="27.0" />
       <TextField fx:id="logoAddressField" layoutX="116.0" layoutY="61.0" prefHeight="25.0" prefWidth="257.0" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="116.0" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="61.0" />
+      <TextField fx:id="photosAddressField" layoutX="116.0" layoutY="27.0" prefHeight="25.0" prefWidth="257.0" />
    </children>
 </AnchorPane>
