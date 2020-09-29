@@ -24,7 +24,8 @@ public class MainWindowController implements Initializable {
 	private static String logoSrc;
 	private static String destinyFolder;
 	private static ArrayList<String> photosList = new ArrayList<String>();
-
+	private static int indexer = 1;
+	private static int photosCounter = 1;
 	@FXML
 	private TextField logoAddressField;
 
@@ -39,15 +40,19 @@ public class MainWindowController implements Initializable {
 
 	@FXML
 	private Button btnSearchPhotos;
-	
+
 	@FXML
 	void mergeLogoIntoPhotos() {
+		
 		for (String image : photosList) {
 			File sourceImageFile = new File(image);
 			File watermarkImageFile = new File(logoSrc);
-			File destImageFile = new File(image);
+			File destImageFile = new File(destinyFolder+"/"+indexer+".png");
 			addImageWatermark(sourceImageFile, watermarkImageFile, destImageFile);
+			indexer+=1;
+			photosCounter+=1;
 		}
+		System.out.println("O logo foi adicionado em "+photosCounter+" fotos com sucesso!");
 	}
 
 	@FXML
@@ -75,22 +80,22 @@ public class MainWindowController implements Initializable {
 
 		if (f != null) {
 			photosAddressField.setText(f.get(0).getParent());
+			destinyFolder = f.get(0).getParent();
 		}
 	}
-	
+
 	@FXML
-    void defineDestiny() {
+	void defineDestiny() {
 		DirectoryChooser directoryChooser = new DirectoryChooser();
 		File selectedDirectory = directoryChooser.showDialog(null);
 
-		if(selectedDirectory != null){
+		if (selectedDirectory != null) {
 			destinyField.setText(selectedDirectory.getAbsolutePath());
-			destinyFolder = selectedDirectory.getAbsolutePath();
+			// destinyFolder = selectedDirectory.getAbsolutePath();
 			System.out.println(destinyFolder);
 		}
-		     
-    }
-	
+
+	}
 
 	@Override
 	public void initialize(URL url, ResourceBundle rc) {
@@ -115,10 +120,9 @@ public class MainWindowController implements Initializable {
 			// paints the image watermark
 			g2d.drawImage(watermarkImage, topLeftX, topLeftY, null);
 
-			ImageIO.write(sourceImage, "png", destImageFile);
+			ImageIO.write(sourceImage,"png", destImageFile);
 			g2d.dispose();
 
-			System.out.println("The image watermark is added to the image.");
 
 		} catch (IOException ex) {
 			System.err.println(ex);
