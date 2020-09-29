@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -20,6 +21,7 @@ import javafx.stage.FileChooser;
 public class MainWindowController implements Initializable {
 	
 	private static String logoSrc;
+	private static ArrayList<String> photosList = new ArrayList<String>();
 	
 	@FXML
 	private TextField logoAddressField;
@@ -35,10 +37,12 @@ public class MainWindowController implements Initializable {
 
 	@FXML
 	void mergeLogoIntoPhotos() {
-		File sourceImageFile = new File("C:/Users/Gabriel/Pictures/Saved Pictures/teste.png");
-		File watermarkImageFile = new File(logoSrc);
-		File destImageFile = new File ("C:/Users/Gabriel/Pictures/Saved Pictures/test.png");
-		addImageWatermark(sourceImageFile, watermarkImageFile, destImageFile);
+		for (String image : photosList) {
+			File sourceImageFile = new File(image);
+			File watermarkImageFile = new File(logoSrc);
+			File destImageFile = new File (image);
+			addImageWatermark(sourceImageFile, watermarkImageFile, destImageFile);
+		}
 	}
 
 	@FXML
@@ -54,15 +58,17 @@ public class MainWindowController implements Initializable {
 
 	@FXML
 	void searchPhotos() {
+		
 		FileChooser fc = new FileChooser();
 		fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("All Images", "*.*"),
 				new FileChooser.ExtensionFilter("JPG", "*.jpg"), new FileChooser.ExtensionFilter("JPEG", "*.jpeg"),
 				new FileChooser.ExtensionFilter("PNG", "*.png"));
 		List<File> f = fc.showOpenMultipleDialog(null);
 		for (File file : f) {
-			System.out.println(file.getAbsolutePath());
+			photosList.add(file.getAbsolutePath());
+			
 		}
-
+		
 		if (f != null) {
 			photosAddressField.setText(f.get(0).getParent());
 		}
