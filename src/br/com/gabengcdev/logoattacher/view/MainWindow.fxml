@@ -5,13 +5,15 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="130.0" prefWidth="400.0" scaleShape="false" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.gabengcdev.logoattacher.controller.MainWindowController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="166.0" prefWidth="400.0" scaleShape="false" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.gabengcdev.logoattacher.controller.MainWindowController">
    <children>
       <Button layoutX="15.0" layoutY="27.0" mnemonicParsing="false" onAction="#searchPhotos" text="Procurar fotos" />
       <Button layoutX="16.0" layoutY="61.0" mnemonicParsing="false" onAction="#searchLogo" prefHeight="25.0" prefWidth="91.0" text="Marca d'água" />
-      <Button layoutX="176.0" layoutY="91.0" mnemonicParsing="false" onAction="#mergeLogoIntoPhotos" text="Iniciar" />
+      <Button layoutX="176.0" layoutY="127.0" mnemonicParsing="false" onAction="#mergeLogoIntoPhotos" text="Iniciar" />
+      <Button layoutX="15.0" layoutY="95.0" mnemonicParsing="false" onAction="#defineDestiny" prefHeight="25.0" prefWidth="91.0" text="Destino" />
       <Label layoutX="116.0" layoutY="14.0" prefHeight="25.0" prefWidth="240.0" />
       <TextField fx:id="logoAddressField" layoutX="116.0" layoutY="61.0" prefHeight="25.0" prefWidth="257.0" />
       <TextField fx:id="photosAddressField" layoutX="116.0" layoutY="27.0" prefHeight="25.0" prefWidth="257.0" />
+      <TextField fx:id="destinyField" layoutX="116.0" layoutY="95.0" prefHeight="25.0" prefWidth="257.0" />
    </children>
 </AnchorPane>
