@@ -16,7 +16,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 
 public class MainWindowController implements Initializable {
@@ -25,15 +24,12 @@ public class MainWindowController implements Initializable {
 	private static String destinyFolder;
 	private static ArrayList<String> photosList = new ArrayList<String>();
 	private static int indexer = 1;
-	private static int photosCounter = 1;
+	private int photosCounter = 0;
 	@FXML
 	private TextField logoAddressField;
 
 	@FXML
 	private TextField photosAddressField;
-
-	@FXML
-	private TextField destinyField;
 
 	@FXML
 	private Button btnSearchLogo;
@@ -43,16 +39,17 @@ public class MainWindowController implements Initializable {
 
 	@FXML
 	void mergeLogoIntoPhotos() {
-		
+
 		for (String image : photosList) {
 			File sourceImageFile = new File(image);
 			File watermarkImageFile = new File(logoSrc);
-			File destImageFile = new File(destinyFolder+"/"+indexer+".png");
+			File destImageFile = new File(destinyFolder + "/" + indexer + ".png");
 			addImageWatermark(sourceImageFile, watermarkImageFile, destImageFile);
-			indexer+=1;
-			photosCounter+=1;
+			indexer += 1;
+			photosCounter += 1;
 		}
-		System.out.println("O logo foi adicionado em "+photosCounter+" fotos com sucesso!");
+		System.out.println("O logo foi adicionado em " + photosCounter + " fotos com sucesso!");
+		photosCounter = 0;
 	}
 
 	@FXML
@@ -84,18 +81,6 @@ public class MainWindowController implements Initializable {
 		}
 	}
 
-	@FXML
-	void defineDestiny() {
-		DirectoryChooser directoryChooser = new DirectoryChooser();
-		File selectedDirectory = directoryChooser.showDialog(null);
-
-		if (selectedDirectory != null) {
-			destinyField.setText(selectedDirectory.getAbsolutePath());
-			// destinyFolder = selectedDirectory.getAbsolutePath();
-			System.out.println(destinyFolder);
-		}
-
-	}
 
 	@Override
 	public void initialize(URL url, ResourceBundle rc) {
@@ -120,9 +105,8 @@ public class MainWindowController implements Initializable {
 			// paints the image watermark
 			g2d.drawImage(watermarkImage, topLeftX, topLeftY, null);
 
-			ImageIO.write(sourceImage,"png", destImageFile);
+			ImageIO.write(sourceImage, "png", destImageFile);
 			g2d.dispose();
-
 
 		} catch (IOException ex) {
 			System.err.println(ex);

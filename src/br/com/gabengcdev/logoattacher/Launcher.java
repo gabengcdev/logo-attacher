@@ -19,7 +19,8 @@ public class Launcher extends Application{
 		
 		Scene scene = new Scene(parent);
 		stage.setScene(scene);
-		
+		stage.setTitle("Logo Attacher");
+		stage.setResizable(false);
 		stage.show();
 	}
 	
