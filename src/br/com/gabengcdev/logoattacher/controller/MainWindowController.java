@@ -88,29 +88,30 @@ public class MainWindowController implements Initializable {
 	}
 
 	static void addImageWatermark(File watermarkImageFile, File sourceImageFile, File destImageFile) {
-
+		
+		
 		try {
-
+			
 			BufferedImage sourceImage = ImageIO.read(sourceImageFile);
 			BufferedImage watermarkImage = ImageIO.read(watermarkImageFile);
-
+			
 			Graphics2D g2d = (Graphics2D) sourceImage.getGraphics();
-			AlphaComposite alphaChannel = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f);
+			AlphaComposite alphaChannel = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.7f);
 			g2d.setComposite(alphaChannel);
-
 			// calculates the coordinate where the image is painted
-			int topLeftX = (sourceImage.getWidth() - watermarkImage.getWidth()) / 2;
-			int topLeftY = (sourceImage.getHeight() - watermarkImage.getHeight()) / 2;
-
+			
 			// paints the image watermark
-			g2d.drawImage(watermarkImage, topLeftX, topLeftY, null);
-
+			
+			
+			g2d.drawImage(watermarkImage, 0, 0, sourceImage.getWidth(), sourceImage.getHeight(), null);
 			ImageIO.write(sourceImage, "png", destImageFile);
 			g2d.dispose();
+			
 
 		} catch (IOException ex) {
 			System.err.println(ex);
 		}
 	}
+	
 
 }
