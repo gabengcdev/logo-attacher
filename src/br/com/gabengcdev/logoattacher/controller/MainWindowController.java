@@ -12,19 +12,23 @@ import java.util.ResourceBundle;
 
 import javax.imageio.ImageIO;
 
+import br.com.gabengcdev.logoattacher.view.ViewFactory;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 
-public class MainWindowController implements Initializable {
+public class MainWindowController extends BaseController implements Initializable {
 
+	public MainWindowController(ViewFactory viewFactory, String fxmlName) {
+		super(viewFactory, fxmlName);
+	}
 	private static String logoSrc;
 	private static String destinyFolder;
 	private static ArrayList<String> photosList = new ArrayList<String>();
 	private static int indexer = 1;
-	private int photosCounter = 0;
+	public int photosCounter = 0;
 	@FXML
 	private TextField logoAddressField;
 
@@ -48,8 +52,8 @@ public class MainWindowController implements Initializable {
 			indexer += 1;
 			photosCounter += 1;
 		}
-		System.out.println("O logo foi adicionado em " + photosCounter + " fotos com sucesso!");
-		photosCounter = 0;
+		viewFactory.showWorkDoneWindow();
+
 	}
 
 	@FXML
@@ -81,37 +85,27 @@ public class MainWindowController implements Initializable {
 		}
 	}
 
-
 	@Override
 	public void initialize(URL url, ResourceBundle rc) {
 
 	}
 
 	static void addImageWatermark(File watermarkImageFile, File sourceImageFile, File destImageFile) {
-		
-		
+
 		try {
-			
 			BufferedImage sourceImage = ImageIO.read(sourceImageFile);
 			BufferedImage watermarkImage = ImageIO.read(watermarkImageFile);
-			
+
 			Graphics2D g2d = (Graphics2D) sourceImage.getGraphics();
 			AlphaComposite alphaChannel = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.7f);
 			g2d.setComposite(alphaChannel);
-			// calculates the coordinate where the image is painted
-			
-			// paints the image watermark
-			
-			
 			g2d.drawImage(watermarkImage, 0, 0, sourceImage.getWidth(), sourceImage.getHeight(), null);
 			ImageIO.write(sourceImage, "png", destImageFile);
 			g2d.dispose();
-			
 
 		} catch (IOException ex) {
 			System.err.println(ex);
 		}
 	}
-	
 
 }
